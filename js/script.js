@@ -87,6 +87,8 @@
         await new Promise((resolve, reject) => {
           preload.onload = resolve;
           preload.onerror = () => reject(new Error('No se pudo cargar la imagen'));
+          preload.sizes = image.sizes;
+          preload.srcset = choice.dataset.srcset || '';
           preload.src = choice.dataset.image;
         });
         if (preload.decode) await preload.decode();
@@ -97,6 +99,7 @@
           await new Promise(resolve => setTimeout(resolve, 370));
         }
         if (version !== changeVersion) return;
+        image.srcset = choice.dataset.srcset || '';
         image.src = choice.dataset.image;
         image.alt = choice.dataset.alt;
         if (image.decode) await image.decode();
@@ -195,33 +198,38 @@
     if (value && value.endsWith('%')) return parseFloat(value) / 100;
     return ({ left: 0, top: 0, center: 0.5, right: 1, bottom: 1 })[value] ?? fallback;
   }
-  function positions() {
+  const live = document.querySelector('.hero-living-scene');
+  function measureScene() {
     const box = cover.getBoundingClientRect();
-    const scale = Math.max(box.width / artwork.naturalWidth, box.height / artwork.naturalHeight);
+    const birdSizes = birds.map(bird => bird.getBoundingClientRect().width || 25);
     const position = getComputedStyle(artwork).objectPosition.split(/\s+/);
+    const scale = Math.max(box.width / artwork.naturalWidth, box.height / artwork.naturalHeight);
     const offsetX = (box.width - artwork.naturalWidth * scale) * fraction(position[0], 0.5);
     const offsetY = (box.height - artwork.naturalHeight * scale) * fraction(position[1], 1);
-    const live = document.querySelector('.hero-living-scene');
-    if (live) {
-      live.style.left = `${offsetX}px`;
-      live.style.top = `${offsetY}px`;
-      live.style.width = `${artwork.naturalWidth * scale}px`;
-      live.style.height = `${artwork.naturalHeight * scale}px`;
-      live.parentElement.classList.add('is-ready');
-    }
-    return { box, points: birds.map(bird => ({
+    return { box, birdSizes, offsetX, offsetY, scale, points: birds.map(bird => ({
       x: offsetX + Number(bird.dataset.perchX) * scale,
       y: offsetY + Number(bird.dataset.perchY) * scale
     })) };
   }
+  function applyScene(metrics) {
+    if (!live) return;
+    live.style.left = `${metrics.offsetX}px`;
+    live.style.top = `${metrics.offsetY}px`;
+    live.style.width = `${artwork.naturalWidth * metrics.scale}px`;
+    live.style.height = `${artwork.naturalHeight * metrics.scale}px`;
+    live.parentElement.classList.add('is-ready');
+  }
+  function positions() { applyScene(measureScene()); }
   function place(fly) {
     if (!artwork.naturalWidth || !artwork.naturalHeight) return;
-    const { box, points } = positions();
+    const metrics = measureScene();
+    const { box, points, birdSizes } = metrics;
+    applyScene(metrics);
     birds.forEach((bird, index) => {
       flights.get(bird)?.cancel();
       flights.delete(bird);
       const point = points[index];
-      const size = bird.getBoundingClientRect().width || 25;
+      const size = birdSizes[index];
       bird.style.left = `${point.x - size * 0.74}px`;
       bird.style.top = `${point.y - size * 0.75}px`;
       bird.style.opacity = '1';
@@ -241,21 +249,21 @@
         transform: `translate(${x - point.x}px, ${y - point.y}px) rotate(${angle}deg)`
       })), { duration: 7200 + index * 650, delay: 1000 + index * 1150, easing: 'ease-in-out', fill: 'both' });
       flights.set(bird, animation);
-      cover.dispatchEvent(new Event('scene-animation-created', { bubbles: true }));
+
       animation.onfinish = () => {
         bird.classList.add('is-landed');
         flights.delete(bird);
         animation.cancel();
       };
     });
+    requestAnimationFrame(() => cover.dispatchEvent(new Event('scene-animation-created', { bubbles: true })));
   }
   function finalScene() {
     phaseVersion++;
+    place(false);
     guests?.classList.add('is-visible');
     couple?.classList.add('is-visible');
     ceremonyComplete = true;
-    positions();
-    place(false);
   }
   async function start() {
     if (started) return;
@@ -270,8 +278,8 @@
     });
     await Promise.allSettled([...birdImages, ...sceneImages].map(image => image.decode ? image.decode() : Promise.resolve()));
     if (version !== phaseVersion) return;
-    positions();
     if (motion.matches) { finalScene(); return; }
+    positions();
     const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
     // 1. Empty chairs and chapel, then 2. guests and officiant.
     await wait(1500);
@@ -296,15 +304,21 @@
     cover.classList.add('ceremony-resetting');
     guests?.classList.remove('is-visible');
     couple?.classList.remove('is-visible');
-    if (guests) getComputedStyle(guests).opacity;
     started = false;
-    requestAnimationFrame(() => { cover.classList.remove('ceremony-resetting'); start(); });
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      cover.classList.remove('ceremony-resetting');
+      requestAnimationFrame(start);
+    }));
   });
   // Keep the people, animated pines and roof perches aligned with the cover crop.
+  let resizeFrame = null;
   window.addEventListener('resize', () => {
-    if (!started) return;
-    positions();
-    if (ceremonyComplete) place(false);
+    if (!started || resizeFrame !== null) return;
+    resizeFrame = requestAnimationFrame(() => {
+      resizeFrame = null;
+      if (ceremonyComplete) place(false);
+      else positions();
+    });
   }, { passive: true });
   motion.addEventListener('change', () => { if (started && motion.matches) finalScene(); });
 
@@ -318,11 +332,15 @@
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
   const visible = new Map();
   const paused = new Map();
+  const lastRunning = new Map();
   const scopeFor = scene => scene.closest('.landscape-cover, .living-salduero') || scene;
   let sundayOverride = null;
   scenes.forEach(scene => {
-    const bounds = scopeFor(scene).getBoundingClientRect();
-    visible.set(scene, bounds.bottom > 0 && bounds.top < window.innerHeight);
+    if ('IntersectionObserver' in window) visible.set(scene, false);
+    else {
+      const bounds = scopeFor(scene).getBoundingClientRect();
+      visible.set(scene, bounds.bottom > 0 && bounds.top < window.innerHeight);
+    }
     paused.set(scene, new Set());
   });
   function syncMotion() {
@@ -330,12 +348,19 @@
       const scope = scopeFor(scene);
       const enabled = scene === sunday && sundayOverride !== null ? sundayOverride : !preference.matches;
       const running = enabled && !document.hidden && visible.get(scene);
+      if (scene === sunday && toggle) {
+        toggle.textContent = enabled ? 'Pausar animación' : 'Activar animación';
+        toggle.setAttribute('aria-label', enabled ? 'Pausar animación de Salduero' : 'Activar animación de Salduero');
+      }
+      if (lastRunning.get(scene) === running) return;
+      lastRunning.set(scene, running);
       if (running) scene.unpauseAnimations?.();
       else scene.pauseAnimations?.();
+      const animations = !running ? (scope.getAnimations?.({ subtree: true }) || []) : [];
       scope.classList.toggle('scene-paused', !running);
       const managed = paused.get(scene);
       if (!running) {
-        (scope.getAnimations?.({ subtree: true }) || []).forEach(animation => {
+        animations.forEach(animation => {
           const isCSS = (typeof CSSAnimation !== 'undefined' && animation instanceof CSSAnimation) ||
             (typeof CSSTransition !== 'undefined' && animation instanceof CSSTransition);
           if (!isCSS && animation.playState === 'running') {
@@ -348,10 +373,6 @@
           if (animation.playState === 'paused') animation.play();
         });
         managed.clear();
-      }
-      if (scene === sunday && toggle) {
-        toggle.textContent = enabled ? 'Pausar animación' : 'Activar animación';
-        toggle.setAttribute('aria-label', enabled ? 'Pausar animación de Salduero' : 'Activar animación de Salduero');
       }
     });
   }
@@ -388,6 +409,6 @@
   });
   preference.addEventListener('change', syncMotion);
   document.addEventListener('visibilitychange', syncMotion);
-  document.addEventListener('scene-animation-created', syncMotion);
+  document.addEventListener('scene-animation-created', () => { lastRunning.clear(); syncMotion(); });
   syncMotion();
 })();
