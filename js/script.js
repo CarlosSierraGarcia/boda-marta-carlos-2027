@@ -46,12 +46,13 @@
     let changeVersion = 0;
     let timer = null;
     let hovered = false;
+    let inView = !('IntersectionObserver' in window);
     let focused = false;
     let autoplay = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function schedule() {
       clearTimeout(timer);
       timer = null;
-      if (autoplay && !hovered && !focused && !document.hidden) {
+      if (autoplay && inView && !hovered && !focused && !document.hidden) {
         timer = setTimeout(() => show(current + 1), 5000);
       }
     }
@@ -144,6 +145,15 @@
       schedule();
     });
     document.addEventListener('visibilitychange', schedule);
+    if ('IntersectionObserver' in window) {
+      const visibility = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          inView = entry.isIntersecting;
+          schedule();
+        });
+      }, { rootMargin: '300px 0px' });
+      visibility.observe(gallery);
+    }
     image.draggable = false;
     updateAutoplay();
     show(0);
@@ -231,6 +241,7 @@
         transform: `translate(${x - point.x}px, ${y - point.y}px) rotate(${angle}deg)`
       })), { duration: 7200 + index * 650, delay: 1000 + index * 1150, easing: 'ease-in-out', fill: 'both' });
       flights.set(bird, animation);
+      cover.dispatchEvent(new Event('scene-animation-created', { bubbles: true }));
       animation.onfinish = () => {
         bird.classList.add('is-landed');
         flights.delete(bird);
@@ -299,30 +310,84 @@
 
 })();
 
-// Movimiento continuo y control explícito para la escena de Salduero.
+// Pause SVG, CSS and flight animations when their scene is off screen.
 (() => {
   const scenes = Array.from(document.querySelectorAll('.living-scene'));
   const sunday = document.querySelector('.living-salduero .living-scene');
   const toggle = document.getElementById('salduero-motion-toggle');
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const visible = new Map();
+  const paused = new Map();
+  const scopeFor = scene => scene.closest('.landscape-cover, .living-salduero') || scene;
   let sundayOverride = null;
+  scenes.forEach(scene => {
+    const bounds = scopeFor(scene).getBoundingClientRect();
+    visible.set(scene, bounds.bottom > 0 && bounds.top < window.innerHeight);
+    paused.set(scene, new Set());
+  });
   function syncMotion() {
     scenes.forEach(scene => {
+      const scope = scopeFor(scene);
       const enabled = scene === sunday && sundayOverride !== null ? sundayOverride : !preference.matches;
-      if (!enabled || document.hidden) scene.pauseAnimations?.();
-      else scene.unpauseAnimations?.();
+      const running = enabled && !document.hidden && visible.get(scene);
+      if (running) scene.unpauseAnimations?.();
+      else scene.pauseAnimations?.();
+      scope.classList.toggle('scene-paused', !running);
+      const managed = paused.get(scene);
+      if (!running) {
+        (scope.getAnimations?.({ subtree: true }) || []).forEach(animation => {
+          const isCSS = (typeof CSSAnimation !== 'undefined' && animation instanceof CSSAnimation) ||
+            (typeof CSSTransition !== 'undefined' && animation instanceof CSSTransition);
+          if (!isCSS && animation.playState === 'running') {
+            animation.pause();
+            managed.add(animation);
+          }
+        });
+      } else {
+        managed.forEach(animation => {
+          if (animation.playState === 'paused') animation.play();
+        });
+        managed.clear();
+      }
       if (scene === sunday && toggle) {
         toggle.textContent = enabled ? 'Pausar animación' : 'Activar animación';
         toggle.setAttribute('aria-label', enabled ? 'Pausar animación de Salduero' : 'Activar animación de Salduero');
       }
     });
   }
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        scenes.forEach(scene => {
+          if (scopeFor(scene) === entry.target) visible.set(scene, entry.isIntersecting);
+        });
+      });
+      syncMotion();
+    });
+    scenes.forEach(scene => observer.observe(scopeFor(scene)));
+  } else {
+    let frame = null;
+    const update = () => {
+      if (frame !== null) return;
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        scenes.forEach(scene => {
+          const bounds = scopeFor(scene).getBoundingClientRect();
+          visible.set(scene, bounds.bottom > 0 && bounds.top < window.innerHeight);
+        });
+        syncMotion();
+      });
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+  }
   toggle?.addEventListener('click', () => {
-    const currentlyEnabled = sundayOverride !== null ? sundayOverride : !preference.matches;
-    sundayOverride = !currentlyEnabled;
+    const enabled = sundayOverride !== null ? sundayOverride : !preference.matches;
+    sundayOverride = !enabled;
     syncMotion();
   });
   preference.addEventListener('change', syncMotion);
   document.addEventListener('visibilitychange', syncMotion);
+  document.addEventListener('scene-animation-created', syncMotion);
   syncMotion();
 })();
