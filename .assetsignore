@@ -1,0 +1,16 @@
+.git
+.git/**
+.wrangler
+.wrangler/**
+.github
+.github/**
+node_modules
+node_modules/**
+.gitignore
+.assetsignore
+wrangler.json
+wrangler.jsonc
+wrangler.toml
+*.bak
+*.zip
+*.txt
