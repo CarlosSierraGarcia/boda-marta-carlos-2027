@@ -247,7 +247,7 @@
       ];
       const animation = bird.animate(route.map(([x, y, angle]) => ({
         transform: `translate(${x - point.x}px, ${y - point.y}px) rotate(${angle}deg)`
-      })), { duration: 7200 + index * 650, delay: 1000 + index * 1150, easing: 'ease-in-out', fill: 'both' });
+      })), { duration: 7200 + index * 650, delay: index * 220, easing: 'ease-in-out', fill: 'both' });
       flights.set(bird, animation);
 
       animation.onfinish = () => {
@@ -287,12 +287,10 @@
     guests?.classList.add('is-visible');
     await wait(3300);
     if (version !== phaseVersion) return;
-    // 3. The couple appears before 4. the birds begin their flight.
-    couple?.classList.add('is-visible');
-    await wait(2900);
-    if (version !== phaseVersion) return;
+    // The couple and the birds start in the same frame.
     ceremonyComplete = true;
     place(true);
+    couple?.classList.add('is-visible');
   }
   if (artwork.complete && artwork.naturalWidth) requestAnimationFrame(start);
   else artwork.addEventListener('load', start, { once: true });
