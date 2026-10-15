@@ -1,0 +1,107 @@
+UN JARDÍN PARA EL SÍ
+
+Ilustraciones creadas con la herramienta integrada de generación de imágenes.
+Referencia arquitectónica: imagen-03.jpg del archivo original.
+
+Activos incorporados al proyecto:
+imagenes/jardin-ilustrado.png — formato horizontal.
+imagenes/jardin-vertical.png — composición vertical para móvil.
+
+Brief utilizado para la ilustración principal:
+Bespoke fine-art gouache illustration for the hero background of a high-end
+Spanish wedding invitation website. Architectural reference: the stone
+chapel of San Marcos. Warm ivory watercolor paper. Airy frame of Soria pine
+forest, muted sage, ochre and dusty blue-green pigment, dry brush texture,
+delicate burgundy wildflowers. Small chapel in bottom right. Open central
+space for live typography. Warm poetic southern European art-book mood,
+artisanal wedding stationery. No text, people, watermarks or website UI.
+
+Brief para la variante móvil:
+Recompose the same illustration on a portrait canvas. Preserve the palette,
+paper, pine forest and chapel. Very open central ivory space. Pine branches
+at the extreme edges and upper corners; chapel and meadow at the bottom.
+No typography, people, graphic UI or watermark.
+
+Verificación:
+Se han comprobado recursos, anclas, historia completa, alojamientos y
+sintaxis JavaScript. La revisión visual de la web en navegador sigue pendiente.
+
+ACTUALIZACIÓN: SALVIA Y MÁS ILUSTRACIONES
+Se sustituye el burdeos de la interfaz por salvia y verde bosque.
+Se mantiene la composición de la sección de alojamiento.
+Se añaden dos ilustraciones mediante la herramienta integrada:
+- imagenes/finca-acuarela.png: ilustración del pabellón basada en la
+  fotografía aportada; acuarela, salvia, arena y papel marfil, sin personas.
+- imagenes/brindis-ilustrado.png: copas, alianzas y olivo, acuarela de
+  tonos salvia y dorado suave sobre fondo transparente.
+Se utiliza la fotografía real aportada en imagenes/salon-banquete.jpg.
+La cena no se describe como un banquete al aire libre ni bajo los árboles.
+
+ACTUALIZACIÓN: TODAS LAS IMÁGENES EN ACUARELA
+Se añaden imagenes/ermita-acuarela.png e imagenes/noctis-acuarela.png,
+generadas con la herramienta integrada a partir de las fotos originales.
+Brief: transformar la arquitectura real y su perspectiva en acuarela
+y gouache sobre papel marfil, verde pinar, salvia, piedra y luz champán;
+sin texto, personas ni nuevos edificios. Mantener la ermita, sus sillas,
+y la suite con su pequeña piscina y muros de piedra reconocibles.
+La cena utiliza imagenes/finca-acuarela.png, basada en el pabellón real.
+Se aligeran los fondos a lino/marfil y se usa tinta oscura para párrafos.
+Se cambia la frase de bienvenida según la nueva propuesta.
+
+REVISIÓN DE PORTADA Y LUGAR
+La portada utiliza imagenes/portada-ermita.png, copia exacta de la imagen
+seleccionada por el usuario. No se ha generado ni editado en esta revisión.
+Se sustituye el montaje de imágenes escalonadas del lugar por un panel
+con una sola ilustración horizontal y datos de ceremonia y celebración.
+El año pasa a 2027 en cifras y se elimina el enlace de calendario.
+
+GALERÍA DE ALOJAMIENTO
+Tres ilustraciones generadas con la herramienta integrada, a partir
+de las tres fotografías adjuntas en esta revisión:
+- imagenes/burbujas-acuarela.png
+- imagenes/suite-madera-acuarela.png
+- imagenes/villa-acuarela.png
+Brief: transformar las fotografías en acuarela y gouache sobre papel
+marfil, manteniendo arquitectura, proporciones y perspectiva; verde
+pinar, salvia, piedra y madera natural. Sin añadir edificios, personas
+o servicios. Composiciones cuadrada, vertical y horizontal respectivamente.
+La portada pasa a una única columna centrada en todos los tamaños.
+
+PORTADA PANORÁMICA
+Nuevo activo: imagenes/portada-panoramica.png, creado con la herramienta
+integrada a partir de la acuarela de la ermita elegida por el usuario.
+Brief: recomponer como paisaje horizontal, ermita y sillas grandes en
+la mitad inferior derecha, pinos en los bordes y cielo marfil claro en
+la mitad superior para la tipografía. Mantener arquitectura y técnica
+de acuarela, sin texto, marcos ni elementos de interfaz.
+El lugar pasa a información práctica sin repetir la imagen del banquete.
+El alojamiento vuelve a una composición integrada con un visor manual.
+
+PINAR Y SALDUERO
+Activos generados con la herramienta integrada:
+- imagenes/pinar-acuarela.png: transformación de imagen-01.jpg en
+  acuarela del jardín con guirnaldas, formato horizontal, verdes
+  naturales y luces doradas sobre papel marfil, sin personas ni texto.
+- imagenes/salduero-acuarela.png: paisaje horizontal inspirado en la
+  escena inferior de la referencia del usuario: puente, río, pueblo,
+  pinar y figura en traje regional. Se eliminan todas las letras y
+  fechas de la referencia para que la nueva sección tenga texto vivo.
+
+GOLONDRINAS EN ACUARELA
+Activos generados con la herramienta integrada:
+imagenes/golondrina-vuelo.png e imagenes/golondrina-posada.png.
+Brief: una golondrina europea en acuarela naturalista, anatomía esbelta,
+cola ahorquillada y plumaje gris azulado, pecho marfil, sobre fondo
+transparente. Dos poses: vuelo hacia la derecha con alas abiertas y
+reposo con alas plegadas y patas cerca del borde inferior. Sin texto,
+objetos, marcos ni interfaz.
+
+PERSONAS DE LA CEREMONIA
+Dos ilustraciones editadas con la herramienta integrada a partir de
+portada-panoramica.png, preservando paisaje, arquitectura y composición:
+- ceremonia-invitados.png: invitados adultos sentados en las sillas,
+  hombres y mujeres vistos de espaldas, y un maestro de ceremonias
+  detrás de la mesa. Sin pareja en el pasillo. Acuarela y tonos neutros.
+- ceremonia-pareja.png: solo una pareja de novia con vestido marfil y
+  novio con traje oscuro, de espaldas delante del altar. Sin invitados.
+Se muestran por máscaras locales para mantener el fondo original.

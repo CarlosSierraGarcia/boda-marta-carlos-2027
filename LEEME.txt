@@ -1,0 +1,91 @@
+MARTA & CARLOS — INVITACIÓN DE BODA
+
+CÓMO VERLA
+Extrae todo el ZIP y abre boda-marta-carlos/index.html en el navegador.
+Para publicarla, sube el contenido de esa carpeta al alojamiento.
+No requiere instalación ni compilación.
+
+VERSIÓN ACTUAL
+- Portada panorámica ilustrada, con nombres sobre una zona clara.
+- El lugar con una única acuarela del pinar e información de ubicación.
+- Hotel con cuatro miniaturas, flechas, gesto táctil y avance cada 5 segundos.
+- Cambio del hotel con carga previa y fundido de salida/entrada.
+- Botón de pausa; el avance se detiene al usar el teclado, mantener el
+  ratón encima o dejar la pestaña en segundo plano.
+- Tres pájaros decorativos vuelan por la portada y se posan sobre la ermita.
+- El vuelo se realiza una sola vez; después permanecen posados.
+- Con movimiento reducido, aparecen directamente posados.
+- Aparición suave de titulares al entrar en pantalla.
+- Se respetan las preferencias del dispositivo para reducir movimiento.
+- Domingo 16 de mayo de 2027 en Salduero, con ilustración propia.
+
+DATOS PENDIENTES
+El lugar concreto y la hora del domingo no se han facilitado.
+La cuenta bancaria original era [IBAN]; se mantiene un texto provisional.
+Los horarios del autobús siguen pendientes.
+No se incluye formulario de confirmación de asistencia.
+Revisar los horarios, precios y disponibilidad antes de publicar.
+
+RECURSOS
+Las imágenes visibles son interpretaciones en acuarela de las referencias.
+Las tipografías se cargan desde Google Fonts; sin conexión se utilizan
+las fuentes alternativas del navegador.
+La revisión visual de la web en navegador sigue pendiente.
+El ZIP se comprueba mediante CRC y extracción completa antes de entregarse.
+
+AGENDA Y NUEVAS ANIMACIONES
+18:30 Recibimiento · 19:00 Ceremonia · 20:00 Cóctel/brindis
+22:00 Cena · 00:00 Fiesta. Cuenta atrás hasta el recibimiento.
+Se ha retirado la pregunta sobre transporte al hotel.
+Los pájaros de portada son ahora acuarelas de golondrinas; se añaden
+motas de luz discretas y una entrada suave del texto.
+La imagen de Salduero mantiene un movimiento lento continuo y reflejos
+en el río, sin detenerse tras una primera reproducción.
+Como el resto de animaciones, respeta la preferencia de movimiento reducido.
+
+PAISAJES CON MOVIMIENTO LOCAL
+Salduero utiliza animación SVG por zonas: viento en los pinos, brisa
+en el bajo de la falda y ondulación continua del río. Puente y casas
+no se desplazan. La animación se repite indefinidamente mientras se ve
+la página y respeta la preferencia de reducir movimiento.
+En la portada se mueven las copas de los pinos y la luz del bosque.
+Los paisajes se pausan al ocultar la pestaña y continúan al volver.
+
+CORRECCIÓN DEL RÍO
+Se elimina la deformación del río y la máscara amplia que alcanzaba
+las orillas. El agua conserva los píxeles originales de la acuarela;
+el movimiento se limita a reflejos finos recortados dentro de cuatro
+pequeñas zonas de agua abierta. Césped, piedras y orillas permanecen
+sin deformación ni difuminado. Se conservan el viento de los pinos
+y el movimiento del bajo de la falda.
+
+SECUENCIA DE LA CEREMONIA EN PORTADA
+La portada comienza vacía. Aparecen los invitados sentados y el maestro
+de ceremonias; después, la novia y el novio; por último vuelan las aves
+y se posan en el tejado. La escena completa permanece en pantalla.
+El botón Repetir escena permite verla de nuevo.
+Se precargan las dos ilustraciones de personas antes de iniciar los pasos.
+Con movimiento reducido se muestra directamente la escena completa.
+Las figuras son representaciones artísticas genéricas, vistas a distancia.
+
+Portada: escena final completa con los novios detrás de los invitados, sin recortar el vestido. Salduero: tres golondrinas en vuelo continuo y un paseante detrás del pretil del puente. El botón Pausar animación controla todos los movimientos de Salduero.
+
+Salduero: se añaden cuatro paseantes y dos carros de madera en una comitiva que cruza el puente. Conserva los pájaros, el paseante anterior y los movimientos del árbol junto a la chica y de la falda. Todos se pausan con el mismo botón.
+
+Salduero: se aumenta el vuelo de la falda y se añade un balanceo suave y localizado al ramo. Se conserva el control de pausa conjunto.
+
+Ajuste Salduero: ramo quieto; se suaviza el movimiento de la falda.
+
+Portada móvil: solo nombres y fecha, con tipografía compacta. Se reduce el velo claro y se adapta la altura a la pantalla para dejar visible la ceremonia. Escritorio sin cambios.
+
+
+VISTA PREVIA EN WHATSAPP
+Se han añadido las etiquetas Open Graph en index.html.
+URL: https://carlossierragarcia.github.io/boda-marta-carlos/
+Título: Marta & Carlos · 15 de mayo de 2027
+Imagen: imagenes/compartir-whatsapp.jpg (acuarela de portada en JPEG).
+Publicar index.html y la nueva imagen manteniendo las carpetas.
+Para usar todo el ZIP, subir el contenido de boda-marta-carlos a la raíz del repositorio.
+GitHub Pages debe terminar de publicar antes de compartir el enlace.
+La comprobación real de la vista previa debe hacerse después de publicar.
+Si WhatsApp conserva una vista previa antigua, prueba a compartir la URL con ?v=2.
