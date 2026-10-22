@@ -266,7 +266,7 @@
     ceremonyComplete = true;
   }
   async function start() {
-    if (started) return;
+    if (started || document.documentElement.classList.contains('invitation-pending')) return;
     started = true;
     const version = ++phaseVersion;
     ceremonyComplete = false;
@@ -292,6 +292,9 @@
     place(true);
     couple?.classList.add('is-visible');
   }
+  document.addEventListener('invitation-opened', () => {
+    if (artwork.complete && artwork.naturalWidth) requestAnimationFrame(start);
+  }, { once: true });
   if (artwork.complete && artwork.naturalWidth) requestAnimationFrame(start);
   else artwork.addEventListener('load', start, { once: true });
   replay?.addEventListener('click', () => {
@@ -345,7 +348,8 @@
     scenes.forEach(scene => {
       const scope = scopeFor(scene);
       const enabled = scene === sunday && sundayOverride !== null ? sundayOverride : !preference.matches;
-      const running = enabled && !document.hidden && visible.get(scene);
+      const running = enabled && !document.hidden && visible.get(scene) &&
+        !document.documentElement.classList.contains('invitation-pending');
       if (scene === sunday && toggle) {
         toggle.textContent = enabled ? 'Pausar animación' : 'Activar animación';
         toggle.setAttribute('aria-label', enabled ? 'Pausar animación de Salduero' : 'Activar animación de Salduero');
@@ -407,6 +411,11 @@
   });
   preference.addEventListener('change', syncMotion);
   document.addEventListener('visibilitychange', syncMotion);
+  document.addEventListener('invitation-opened', () => {
+    scenes.forEach(scene => scene.setCurrentTime?.(0));
+    lastRunning.clear();
+    syncMotion();
+  }, { once: true });
   document.addEventListener('scene-animation-created', () => { lastRunning.clear(); syncMotion(); });
   syncMotion();
 })();

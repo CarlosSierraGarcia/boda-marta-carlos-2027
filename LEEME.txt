@@ -89,3 +89,114 @@ Para usar todo el ZIP, subir el contenido de boda-marta-carlos a la raíz del re
 GitHub Pages debe terminar de publicar antes de compartir el enlace.
 La comprobación real de la vista previa debe hacerse después de publicar.
 Si WhatsApp conserva una vista previa antigua, prueba a compartir la URL con ?v=2.
+
+SOBRE DE BIENVENIDA
+Al entrar aparece un sobre en tonos crema con sello M & C. Pulsa el
+sobre (o usa Tab y Enter/Espacio) para abrirlo. La solapa se levanta,
+la tarjeta asoma y el sobre desaparece. Solo entonces empieza la
+secuencia original de invitados, novios y golondrinas de la portada.
+La apertura se muestra en cada visita o recarga; no usa cookies.
+Con movimiento reducido, la apertura es inmediata. Sin JavaScript,
+la invitación queda accesible sin el sobre.
+Archivos añadidos: css/sobre.css y js/sobre.js. Se actualizan también
+index.html y js/script.js. Publica toda la carpeta para conservarlo.
+
+SOBRE REDISEÑADO
+Sobre verde oliva con textura de papel, ramita botánica y sello de lacre.
+La indicación «Toca el sobre para descubrirla» y el botón «Abrir invitación»
+permiten reconocer la acción. Tanto el sobre como el botón abren la web.
+El movimiento suave y los pulsos del sello solo se repiten unas veces
+y se desactivan con la preferencia de movimiento reducido.
+
+AJUSTE DEL SOBRE
+Sobre algo más grande, con dos piñas en lugar de la ramita. El sello
+mantiene M & C en una sola línea. Se eliminan el balanceo, los pulsos
+y el desplazamiento al pasar el ratón. El sobre permanece quieto
+hasta pulsarlo; conserva la apertura y el botón Abrir invitación.
+
+REDISEÑO DEL SOBRE MARFIL
+Se sustituye el diseño verde por un sobre marfil con solapa triangular,
+pliegues delineados y sombra bajo la solapa. Se retiran las piñas.
+Se conserva el sello M & C, el botón de apertura y la escena diferida.
+El sobre no tiene animación de espera ni se desplaza al pasar el ratón.
+
+REGRESO AL SOBRE VERDE
+Se recupera el verde oliva, manteniendo pliegues con contraste para
+reconocer el sobre. Una sola piña pequeña de trazos curvos sustituye
+a la pareja anterior. Se mantienen el sello en una línea, la indicación
+y el botón Abrir invitación. El sobre permanece quieto hasta abrirse.
+
+COLOR DEL SOBRE
+Sobre en crema cálido con pliegues beige, texto y piña en tonos tostados.
+
+CORRECCIÓN DE COLOR Y RELLENO
+Se corrige el trazo del pliegue inferior: su relleno negro por defecto
+se sustituye por fill="none". Paleta marfil con verde salvia suave
+en el bolsillo inferior y sello terracota.
+
+SELLO SALVIA
+Sello verde salvia con relieve suave, borde fino e iniciales separadas
+para equilibrar M & C. Se sustituye el anterior color terracota.
+
+DETALLE DE ESTRELLAS
+Se retira la piña y se añade un pequeño motivo de estrellas en dorado
+suave, como una estampación. Se conserva el sobre claro y el sello salvia.
+
+FOTOS EN EL SOBRE
+Se retiran las estrellas. Sobre verde bosque suave y sello salvia claro.
+Tres fotografías en marcos marfil ligeramente girados: las dos fotos
+del perro a la izquierda y la de Marta y Carlos a la derecha.
+Se incluyen versiones WebP ligeras orientadas correctamente.
+Los originales adjuntos no se modifican. La composición queda quieta
+hasta la apertura y se desvanece al levantar la solapa.
+
+ILUSTRACIÓN PERSONALIZADA EN ACUARELA
+Las fotografías sobre el sobre se sustituyen por una acuarela con fondo
+transparente: perro a la izquierda y pareja a la derecha, sin marcos.
+Archivo: imagenes/acuarela-perro-marta-carlos.png
+Creado con la herramienta integrada de generación de imágenes.
+Prompt de creación: convertir las fotos adjuntas en dos viñetas separadas
+de acuarela con contornos delicados de grafito, manteniendo los rasgos
+de la pareja, su pose y ropa, y las marcas marrones y blancas del perro.
+Perro sentado a la izquierda y pareja de cintura hacia arriba a la derecha,
+fondo transparente, sin texto, marcos, paisaje ni adornos.
+
+ACUARELAS MÁS PEQUEÑAS
+Las ilustraciones se reducen y se colocan en las esquinas inferiores,
+con una leve inclinación y color suave para parecer impresas en el papel.
+
+ILUSTRACIÓN CONJUNTA QUE PERMANECE
+El perro y la pareja se agrupan en una composición sobre el sobre.
+Al abrirse, el dibujo permanece visible mientras desaparece el sobre
+y pasa suavemente a la esquina inferior izquierda de la portada.
+Sigue formando parte de la portada después de la apertura.
+Con movimiento reducido, el cambio de posición es inmediato.
+
+RETRATO ÚNICO DE LOS TRES
+Se sustituye la composición separada por un único retrato de familia
+en acuarela: los dos adultos juntos con el perro entre ambos, abrazado.
+Archivo: imagenes/retrato-familia-acuarela.png
+Creado con generación de imágenes integrada a partir de las tres fotos.
+Prompt: retrato de familia único y compacto de la pareja y su border collie,
+con cuerpos superpuestos y contacto natural, perro centrado entre ambos,
+respetando rasgos, ropa y marcas del pelaje; acuarela fina y contornos
+de lápiz delicados, fondo transparente, sin viñetas separadas ni marcos.
+Permanece pequeño sobre el sobre y después en la esquina de la portada.
+
+RETRATO EN LA BIENVENIDA
+Se retira la ilustración del sobre y de la esquina de la portada.
+El texto del sobre queda centrado. El retrato de los tres aparece
+en la bienvenida, con espacio propio y fondo claro, sustituyendo
+la pequeña ilustración de brindis. No tapa la escena ni sus controles.
+
+HORARIO SIN TARJETAS CON ARCO
+El programa usa ahora una línea del tiempo abierta con iconos en círculos
+y las horas debajo. En móvil, los cinco momentos se leen en vertical.
+Se mantienen todos los horarios y textos del programa.
+Archivo nuevo: css/programa.css.
+
+PROGRAMA CON ILUSTRACIONES GRANDES
+Se eliminan los círculos: los iconos se amplían sobre manchas suaves
+de color, con horas grandes y un ritmo escalonado en escritorio.
+En móvil, cada momento ocupa una fila con ilustración y texto al lado.
+Se mantienen los cinco horarios y textos originales.

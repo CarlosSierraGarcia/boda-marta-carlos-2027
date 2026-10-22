@@ -1,0 +1,103 @@
+/* Sin JavaScript, la invitación permanece accesible sin pantalla de apertura. */
+.invitation-envelope { display: none; }
+.landscape-invitation h1[tabindex="-1"]:focus { outline: none; }
+html.invitation-pending, .invitation-pending body { overflow: hidden; }
+.invitation-pending #invitation-content { visibility: hidden; }
+.invitation-pending #invitation-content *,
+.invitation-pending #invitation-content *::before,
+.invitation-pending #invitation-content *::after { animation-play-state: paused !important; }
+.invitation-pending .invitation-envelope {
+  position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+  overflow-y: auto; overflow-x: hidden; padding: 36px 24px;
+  background: radial-gradient(ellipse at 50% 42%, #fffcf5 0%, #f3ecdf 65%, #e9dfce 100%);
+  color: #46523f; text-align: center; perspective: 1400px;
+}
+.envelope-intro { width: min(620px, 100%); margin: auto; }
+.envelope-eyebrow { color: #6b735e; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; }
+.envelope-names { margin: 12px 0 10px; font-family: var(--serif); font-size: clamp(38px, 7vw, 57px); font-weight: 400; line-height: 1.1; }
+.envelope-date { color: #6b735e; font-size: 10px; letter-spacing: .18em; }
+.envelope-button {
+  display: block; position: relative; width: 100%; height: auto; aspect-ratio: 620 / 380;
+  margin: 66px auto 30px; border: 1px solid #6c805f; padding: 0; border-radius: 3px;
+  background: #63795b url('../imagenes/papel.svg'); cursor: pointer; color: #fff3d5;
+  box-shadow: 0 30px 45px -20px #34452d66, 0 4px 9px #34452d22;
+  perspective: 1200px; isolation: isolate; -webkit-tap-highlight-color: transparent;
+}
+.envelope-button:focus-visible { outline: 2px solid #997253; outline-offset: 10px; }
+.envelope-letter {
+  position: absolute; inset: 8% 6% 5%; display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 10px; background: #fffaf1 url('../imagenes/papel.svg');
+  color: #46523f; box-shadow: 0 0 10px #66513b16; z-index: 1;
+  transition: transform .7s cubic-bezier(.2,.65,.3,1) .55s;
+}
+.envelope-letter-monogram { font-family: var(--serif); font-size: clamp(32px, 8vw, 58px); line-height: 1; white-space: nowrap; }
+.envelope-letter-note { font-family: var(--serif); font-size: clamp(18px, 4vw, 25px); font-style: italic; }
+.envelope-letter-date { font-size: 9px; letter-spacing: .17em; }
+.envelope-pocket { position: absolute; inset: 0; z-index: 2; overflow: hidden; border-radius: 2px; }
+.envelope-pocket svg, .envelope-flap svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.envelope-flap { position: absolute; inset: 0; z-index: 4; transform-origin: top; transition: transform .75s ease, z-index 0s .37s; transform-style: preserve-3d; }
+.envelope-seal {
+  position: absolute; left: 50%; top: 57%; z-index: 5; width: 86px; height: 84px;
+  display: grid; place-items: center; border-radius: 48% 51% 47% 50%; color: #405137;
+  background: radial-gradient(circle at 30% 20%, #dce1cf 0%, #bfc9ac 45%, #a5b493 80%, #95a684 100%);
+  box-shadow: 0 4px 6px #34442d33, inset 1px 2px 2px #e1e8d580, inset -1px -2px 2px #40513755;
+  font-family: var(--serif); font-size: 23px; text-shadow: 0 1px 1px #edf1e399;
+  transform: translate(-50%, -50%); transition: opacity .2s, transform .35s;
+}
+.envelope-seal > .envelope-seal-monogram { white-space: nowrap; line-height: 1; display: inline-flex; align-items: center; justify-content: center; gap: 3px; width: 68px; height: 66px; border: 1px solid #dce4cd99; border-radius: 50%; box-shadow: 0 0 0 3px #c3cfb333, inset 0 1px 2px #44563a22; }
+.envelope-seal-monogram > span { display: inline; font-weight: 400; }
+.envelope-seal-monogram > i { font-size: .65em; font-style: italic; opacity: .9; transform: translateY(1px); }
+.envelope-address { position: absolute; left: 28%; right: 30%; bottom: 13%; z-index: 4; color: #f4eedc; font-family: var(--serif); font-style: italic; font-size: clamp(12px, 2.8vw, 19px); line-height: 1.15; pointer-events: none; }
+.envelope-hint { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; letter-spacing: .01em; color: #5b6554; }
+.envelope-hint svg { width: 23px; height: 23px; flex-shrink: 0; }
+.envelope-cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 32px;
+  min-height: 52px; min-width: 228px; padding: 14px 28px; margin-top: 16px;
+  background: #43573e; color: #fff9eb; border: 1px solid #43573e; border-radius: 999px;
+  font-size: 13px; font-weight: 500; cursor: pointer; letter-spacing: .025em;
+  box-shadow: 0 6px 16px #43573e20; transition: background .2s;
+}
+.envelope-cta span { font-size: 21px; line-height: 1; }
+.envelope-cta:focus-visible { outline: 2px solid #997253; outline-offset: 5px; }
+.envelope-footnote { display: block; color: #73775f; font-family: var(--serif); font-size: 17px; font-style: italic; margin-top: 14px; }
+@media (hover: hover) { .envelope-cta:hover { background: #30452d; } }
+.invitation-envelope.is-opening .envelope-flap { transform: rotateX(180deg); z-index: 0; }
+.invitation-envelope.is-opening .envelope-seal { opacity: 0; transform: translate(-50%, -50%) scale(1.15); }
+.invitation-envelope.is-opening .envelope-letter { transform: translateY(-42%); }
+.invitation-envelope.is-opening .envelope-actions { opacity: 0; pointer-events: none; transition: opacity .3s; }
+.invitation-envelope.is-leaving { opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+.invitation-envelope.is-leaving .envelope-button { transform: translateY(32vh); transition: transform .6s ease-in; }
+@media (max-width: 600px) {
+  .envelope-button { margin-top: 58px; margin-bottom: 26px; }
+  .envelope-seal { width: 72px; height: 70px; font-size: 20px; }
+  .envelope-seal > .envelope-seal-monogram { width: 58px; height: 56px; }
+  .envelope-footnote { font-size: 16px; }
+}
+@media (max-height: 720px) {
+  .invitation-pending .invitation-envelope { padding: 24px; }
+  .envelope-intro { max-width: 460px; }
+  .envelope-button { margin-top: 48px; margin-bottom: 20px; }
+  .envelope-names { font-size: 38px; }
+}
+@media (max-height: 580px) and (orientation: landscape) {
+  .invitation-pending .invitation-envelope { padding: 20px; }
+  .envelope-intro { max-width: 320px; }
+  .envelope-names { font-size: 30px; }
+  .envelope-button { margin-top: 42px; margin-bottom: 14px; }
+  .envelope-cta { min-height: 44px; margin-top: 10px; padding: 9px 24px; }
+  .envelope-footnote { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .invitation-envelope *, .invitation-envelope *::before, .invitation-envelope *::after, .invitation-envelope { animation: none !important; transition: none !important; }
+}
+
+/* El retrato tiene su propio espacio en la bienvenida. */
+.envelope-address { left: 5%; right: 5%; bottom: 13%; text-align: center; }
+.welcome-family-portrait { display: block; position: relative; width: min(290px, 65vw); margin: 32px auto 26px; }
+.welcome-family-portrait::before { content: ''; position: absolute; inset: 12% -10% -4%; border-radius: 50%; background: radial-gradient(ellipse, #dce3d244, transparent 70%); z-index: 0; }
+.welcome-family-portrait img { display: block; position: relative; width: 100%; height: auto; object-fit: contain; z-index: 1; }
+@media (max-width: 600px) {
+  .envelope-seal { width: 62px; height: 60px; font-size: 18px; }
+  .envelope-seal > .envelope-seal-monogram { width: 50px; height: 48px; }
+  .welcome-family-portrait { width: min(230px, 65vw); margin: 26px auto 22px; }
+}

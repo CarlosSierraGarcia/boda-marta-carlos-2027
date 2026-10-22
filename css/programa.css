@@ -1,0 +1,79 @@
+/* Cinco momentos ilustrados, con manchas suaves de color y horas grandes. */
+.program-section .timeline {
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+  position: relative; gap: 24px; margin-top: 58px; padding-bottom: 32px; border: 0;
+}
+.program-section .timeline::before { content: none; }
+.program-section .timeline-item,
+.program-section .timeline-item:nth-child(even),
+.program-section .timeline-item:last-child {
+  position: relative; padding: 0 4px; min-height: 0; width: auto;
+  border: 0; border-radius: 0; outline: none; box-shadow: none;
+  background: transparent; transform: none; text-align: center;
+  grid-column: auto; justify-self: stretch; isolation: isolate;
+}
+.program-section .timeline-item:nth-child(even) { transform: translateY(32px); }
+.program-section .timeline-item::before {
+  content: ''; position: absolute; top: 26px; left: 50%; width: 138px; height: 100px;
+  transform: translateX(-50%) rotate(-12deg); z-index: -1;
+  border-radius: 37% 63% 58% 42% / 54% 39% 61% 46%;
+  background: radial-gradient(ellipse at 45% 50%, #d9e1c990, #e2e6d547 55%, transparent 73%);
+}
+.program-section .timeline-item:nth-child(even)::before {
+  transform: translateX(-50%) rotate(13deg);
+  background: radial-gradient(ellipse at 45% 50%, #e9d9bb99, #efe5d14d 55%, transparent 73%);
+}
+.program-section .timeline-num {
+  display: block; position: relative; left: auto; right: auto;
+  margin-bottom: 15px; font-size: 9px; letter-spacing: .22em; color: #869175;
+}
+.program-section .timeline-item svg,
+.program-section .timeline-item:nth-child(even) svg {
+  position: relative; display: block; box-sizing: border-box;
+  width: 124px; height: 110px; padding: 7px; margin: 0 auto 22px;
+  border: 0; border-radius: 0; background: transparent; color: #526847;
+}
+.program-section .timeline-item time { display: block; margin: 0; font-size: 56px; line-height: 1; letter-spacing: -.04em; color: #354d3c; }
+.program-section .timeline-item h3 { margin: 16px 0 11px; font-size: 27px; line-height: 1.15; color: #354d3c; }
+.program-section .timeline-item p { margin: 0 auto; max-width: 185px; font-size: 12px; line-height: 1.8; color: #68705f; }
+.program-section .program-note { margin-top: 48px; }
+@media (min-width: 761px) and (max-width: 1100px) {
+  .program-section .timeline { gap: 12px; }
+  .program-section .timeline-item svg,
+  .program-section .timeline-item:nth-child(even) svg { width: 104px; height: 96px; padding: 4px; }
+  .program-section .timeline-item::before { width: 110px; height: 90px; }
+  .program-section .timeline-item h3 { font-size: 23px; }
+  .program-section .timeline-item p { font-size: 11px; }
+  .program-section .timeline-item time { font-size: 46px; }
+}
+@media (max-width: 760px) {
+  .program-section .timeline { grid-template-columns: 1fr; gap: 36px; margin: 44px auto 0; padding-bottom: 0; max-width: 460px; }
+  .program-section .timeline-item,
+  .program-section .timeline-item:nth-child(even),
+  .program-section .timeline-item:last-child {
+    display: grid; grid-template-columns: 110px minmax(0, 1fr); column-gap: 22px;
+    align-content: start; padding: 0 0 28px; text-align: left; transform: none;
+    border-bottom: 1px solid #d9ddce;
+  }
+  .program-section .timeline-item:last-child { padding-bottom: 0; border-bottom: 0; }
+  .program-section .timeline-item::before,
+  .program-section .timeline-item:nth-child(even)::before { left: 55px; top: 20px; width: 120px; height: 105px; }
+  .program-section .timeline-num { grid-column: 1; grid-row: 1; text-align: center; margin: 0; padding-top: 2px; }
+  .program-section .timeline-item svg,
+  .program-section .timeline-item:nth-child(even) svg { grid-column: 1; grid-row: 2 / 4; width: 110px; height: 100px; padding: 3px; margin: 8px 0 0; align-self: start; }
+  .program-section .timeline-item time { grid-column: 2; grid-row: 1; font-size: 46px; }
+  .program-section .timeline-item h3 { grid-column: 2; grid-row: 2; margin: 10px 0 8px; font-size: 28px; }
+  .program-section .timeline-item p { grid-column: 2; grid-row: 3; max-width: none; margin: 0; font-size: 12px; }
+  .program-section .program-note { margin-top: 34px; }
+}
+@media (max-width: 360px) {
+  .program-section .timeline-item,
+  .program-section .timeline-item:nth-child(even),
+  .program-section .timeline-item:last-child { grid-template-columns: 90px minmax(0, 1fr); column-gap: 16px; }
+  .program-section .timeline-item svg,
+  .program-section .timeline-item:nth-child(even) svg { width: 90px; height: 90px; }
+  .program-section .timeline-item::before,
+  .program-section .timeline-item:nth-child(even)::before { left: 45px; width: 105px; }
+  .program-section .timeline-item h3 { font-size: 25px; }
+  .program-section .timeline-item time { font-size: 42px; }
+}
