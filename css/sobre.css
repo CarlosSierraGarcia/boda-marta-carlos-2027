@@ -1,5 +1,8 @@
 /* Sin JavaScript, la invitación permanece accesible sin pantalla de apertura. */
 .invitation-envelope { display: none; }
+.invitation-stardust { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1100; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .invitation-stardust { display: none; } }
+
 .landscape-invitation h1[tabindex="-1"]:focus { outline: none; }
 html.invitation-pending, .invitation-pending body { overflow: hidden; }
 .invitation-pending #invitation-content { visibility: hidden; }
@@ -96,6 +99,49 @@ html.invitation-pending, .invitation-pending body { overflow: hidden; }
 .welcome-family-portrait { display: block; position: relative; width: min(290px, 65vw); margin: 32px auto 26px; }
 .welcome-family-portrait::before { content: ''; position: absolute; inset: 12% -10% -4%; border-radius: 50%; background: radial-gradient(ellipse, #dce3d244, transparent 70%); z-index: 0; }
 .welcome-family-portrait img { display: block; position: relative; width: 100%; height: auto; object-fit: contain; z-index: 1; }
+
+/* Sobre botánico: oliva profundo, relieve y cantos de oro envejecido. */
+.envelope-intro:has(.ornate-envelope) { width: min(620px, 100%); }
+.envelope-button.ornate-envelope {
+  width: 100%; aspect-ratio: 620 / 380;
+  margin: 66px auto 30px; border: 1px solid #b9a171; border-radius: 4px;
+  background: #34482d url('../imagenes/papel.svg');
+  box-shadow: 0 24px 45px -18px #25331f80, 0 2px 6px #3f432d44;
+}
+.ornate-envelope .envelope-emboss { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: .88; }
+.envelope-emboss svg { display: block; width: 100%; height: 100%; }
+.ornate-envelope .envelope-address { bottom: 9%; font-size: 15px; color: #e4d5af; text-shadow: 0 1px 2px #26361c; }
+.envelope-top-inscription { position: absolute; top: 15%; left: 0; width: 100%; z-index: 4; color: #dcd0a8; font: italic 18px var(--serif); pointer-events: none; transition: opacity .3s; }
+.ornate-envelope .envelope-seal {
+  width: 76px; height: 74px; font-size: 22px; color: #82602d;
+  border-radius: 43% 52% 44% 53% / 49% 43% 54% 46%;
+  background: radial-gradient(circle at 32% 24%, #fff1ce 0%, #ead09a 38%, #c59a53 72%, #f1d9a3 87%, #b48d4a 100%);
+  box-shadow: 0 5px 9px #19280e70, inset 2px 3px 3px #fff3d0, inset -2px -3px 3px #936a31;
+  text-shadow: 0 1px #fff2cf; transition: opacity .45s .25s, transform .7s;
+}
+.ornate-envelope .envelope-seal-monogram { width: 59px; height: 57px; border-color: #ab813e; box-shadow: 0 0 0 2px #f9e5b880, inset 0 1px 2px #98703650; }
+.ornate-envelope .envelope-letter { inset: 8% 7%; }
+.ornate-envelope .envelope-letter-monogram { font-size: 40px; }
+.ornate-envelope .envelope-letter-note { font-size: 20px; }
+.ornate-envelope .envelope-flap { transition: transform 1.2s cubic-bezier(.3,.05,.3,1) .25s, z-index 0s .85s; }
+.invitation-envelope.is-opening .envelope-top-inscription { opacity: 0; }
+.invitation-envelope.is-opening .ornate-envelope .envelope-letter { transform: translateY(-25%); }
+.envelope-glow { position: absolute; inset: -15% -45%; z-index: 3; opacity: 0; pointer-events: none; transform: scale(.3); background: radial-gradient(ellipse at 50% 58%, #fff8df 0%, #ffe6a7d9 5%, #edc16d80 15%, #e1b35a26 32%, transparent 58%); }
+.envelope-glow::before { content: ''; position: absolute; inset: 10% 28%; background: linear-gradient(90deg, transparent 10%, #ffe9b53b 35%, #fff2ce99 50%, #ffe9b53b 65%, transparent 90%); filter: blur(10px); }
+.invitation-envelope.is-opening .envelope-glow { animation: envelope-warmth 2.7s ease .3s both; }
+@keyframes envelope-warmth {
+  0% { opacity: 0; transform: scale(.3); }
+  38% { opacity: .9; transform: scale(.9); }
+  65% { opacity: .75; transform: scale(1.1); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+@media (max-height: 740px) {
+  .envelope-intro:has(.ornate-envelope) .envelope-names { font-size: 36px; margin-top: 8px; }
+  .envelope-button.ornate-envelope { margin-top: 48px; margin-bottom: 20px; width: 100%; }
+  .envelope-intro:has(.ornate-envelope) .envelope-cta { min-height: 44px; margin-top: 10px; padding: 8px 24px; }
+  .envelope-intro:has(.ornate-envelope) .envelope-footnote { margin-top: 10px; font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .envelope-glow { display: none; } }
 @media (max-width: 600px) {
   .envelope-seal { width: 62px; height: 60px; font-size: 18px; }
   .envelope-seal > .envelope-seal-monogram { width: 50px; height: 48px; }
