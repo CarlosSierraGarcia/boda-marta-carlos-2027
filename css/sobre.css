@@ -28,21 +28,21 @@ html.invitation-pending, .invitation-pending body { overflow: hidden; }
   position: absolute; inset: 8% 6% 5%; display: flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 10px; background: #fffaf1 url('../imagenes/papel.svg');
   color: #46523f; box-shadow: 0 0 10px #66513b16; z-index: 1;
-  transition: transform .7s cubic-bezier(.2,.65,.3,1) .55s;
+  transition: transform 1s cubic-bezier(.2,.65,.3,1) .8s;
 }
 .envelope-letter-monogram { font-family: var(--serif); font-size: clamp(32px, 8vw, 58px); line-height: 1; white-space: nowrap; }
 .envelope-letter-note { font-family: var(--serif); font-size: clamp(18px, 4vw, 25px); font-style: italic; }
 .envelope-letter-date { font-size: 9px; letter-spacing: .17em; }
 .envelope-pocket { position: absolute; inset: 0; z-index: 2; overflow: hidden; border-radius: 2px; }
 .envelope-pocket svg, .envelope-flap svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.envelope-flap { position: absolute; inset: 0; z-index: 4; transform-origin: top; transition: transform .75s ease, z-index 0s .37s; transform-style: preserve-3d; }
+.envelope-flap { position: absolute; inset: 0; z-index: 4; transform-origin: top; transition: transform 1.05s ease, z-index 0s .52s; transform-style: preserve-3d; }
 .envelope-seal {
   position: absolute; left: 50%; top: 57%; z-index: 5; width: 86px; height: 84px;
   display: grid; place-items: center; border-radius: 48% 51% 47% 50%; color: #405137;
   background: radial-gradient(circle at 30% 20%, #dce1cf 0%, #bfc9ac 45%, #a5b493 80%, #95a684 100%);
   box-shadow: 0 4px 6px #34442d33, inset 1px 2px 2px #e1e8d580, inset -1px -2px 2px #40513755;
   font-family: var(--serif); font-size: 23px; text-shadow: 0 1px 1px #edf1e399;
-  transform: translate(-50%, -50%); transition: opacity .2s, transform .35s;
+  transform: translate(-50%, -50%); transition: opacity .3s, transform .5s;
 }
 .envelope-seal > .envelope-seal-monogram { white-space: nowrap; line-height: 1; display: inline-flex; align-items: center; justify-content: center; gap: 3px; width: 68px; height: 66px; border: 1px solid #dce4cd99; border-radius: 50%; box-shadow: 0 0 0 3px #c3cfb333, inset 0 1px 2px #44563a22; }
 .envelope-seal-monogram > span { display: inline; font-weight: 400; }
@@ -65,8 +65,8 @@ html.invitation-pending, .invitation-pending body { overflow: hidden; }
 .invitation-envelope.is-opening .envelope-seal { opacity: 0; transform: translate(-50%, -50%) scale(1.15); }
 .invitation-envelope.is-opening .envelope-letter { transform: translateY(-42%); }
 .invitation-envelope.is-opening .envelope-actions { opacity: 0; pointer-events: none; transition: opacity .3s; }
-.invitation-envelope.is-leaving { opacity: 0; transition: opacity .6s ease; pointer-events: none; }
-.invitation-envelope.is-leaving .envelope-button { transform: translateY(32vh); transition: transform .6s ease-in; }
+.invitation-envelope.is-leaving { opacity: 0; transition: opacity .75s ease; pointer-events: none; }
+.invitation-envelope.is-leaving .envelope-button { transform: translateY(32vh); transition: transform .75s ease-in; }
 @media (max-width: 600px) {
   .envelope-button { margin-top: 58px; margin-bottom: 26px; }
   .envelope-seal { width: 72px; height: 70px; font-size: 20px; }

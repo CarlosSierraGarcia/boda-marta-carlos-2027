@@ -1,0 +1,69 @@
+/* Acceso a la confirmación: acompaña la lectura sin ocupar espacio en ella. */
+.rsvp-float {
+  position: fixed;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  max-width: calc(100vw - 32px);
+  min-height: 76px;
+  padding: 13px 22px 13px 14px;
+  border: 1px solid #d9bd81;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #526443, #34482f);
+  color: #fff9eb;
+  text-decoration: none;
+  box-shadow: 0 8px 30px #26342140, 0 0 0 5px #d9bd8126;
+  isolation: isolate;
+  transition: transform .25s ease, box-shadow .25s ease;
+  animation: rsvp-entrance .7s ease both, rsvp-glow 2s ease-in-out .7s 3;
+}
+.invitation-pending .rsvp-float {
+  visibility: hidden;
+  pointer-events: none;
+  animation: none;
+}
+.rsvp-float-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #ddc58d80;
+  border-radius: 50%;
+  background: #ffffff0d;
+  color: #f1d79d;
+}
+.rsvp-float-icon svg { width: 25px; height: 25px; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.rsvp-heart { fill: #f1d79d; stroke: #43573a; stroke-width: 1; }
+.rsvp-float-copy { display: flex; flex-direction: column; gap: 3px; }
+.rsvp-float-note { font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.15; color: #f1d79d; }
+.rsvp-float-copy strong { font-family: var(--sans); font-size: 13px; font-weight: 600; line-height: 1.4; }
+.rsvp-float-arrow { margin-left: 5px; font-size: 26px; line-height: 1; color: #f1d79d; }
+.rsvp-float:focus-visible { outline: 3px solid #997253; outline-offset: 7px; }
+body:has(#main-nav.open) .rsvp-float { visibility: hidden; }
+@media (hover: hover) {
+  .rsvp-float:hover { transform: translateY(-4px); box-shadow: 0 12px 35px #26342155, 0 0 0 6px #d9bd8140; }
+}
+.rsvp-float:active { transform: scale(.97); }
+@keyframes rsvp-entrance {
+  from { opacity: 0; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes rsvp-glow {
+  0%, 100% { box-shadow: 0 8px 30px #26342140, 0 0 0 5px #d9bd8126; }
+  50% { box-shadow: 0 8px 30px #26342140, 0 0 0 11px #d9bd8100; }
+}
+@media (max-width: 600px) {
+  .rsvp-float { right: max(16px, env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom)); min-height: 68px; gap: 10px; padding: 10px 18px 10px 11px; }
+  .rsvp-float-icon { width: 39px; height: 39px; }
+  .rsvp-float-note { font-size: 16px; }
+  .rsvp-float-copy strong { font-size: 12px; }
+}
+/* Permite leer también los últimos detalles sin que el botón los tape. */
+footer { padding-bottom: calc(130px + env(safe-area-inset-bottom)); }
+@media (prefers-reduced-motion: reduce) {
+  .rsvp-float { animation: none; transition: none; }
+}
