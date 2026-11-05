@@ -112,7 +112,7 @@
       const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
       envelope.classList.add('is-opening');
       releaseStardust();
-      if (!reduceMotion) await wait(2200);
+      if (!reduceMotion) await wait(1900);
       envelope.classList.add('is-leaving');
       if (!reduceMotion) await wait(750);
       // La portada conserva su estado inicial hasta que el sobre ha desaparecido.
