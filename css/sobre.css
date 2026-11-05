@@ -102,5 +102,3 @@ html.invitation-pending, .invitation-pending body { overflow: hidden; }
   .welcome-family-portrait { width: min(230px, 65vw); margin: 26px auto 22px; }
 }
 
-.invitation-stardust { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1100; pointer-events: none; }
-@media (prefers-reduced-motion: reduce) { .invitation-stardust { display: none; } }
